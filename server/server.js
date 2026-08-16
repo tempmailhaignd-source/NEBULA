@@ -2,10 +2,18 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import crypto from 'crypto';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 const sessions = new Map();
+
+// Serve static frontend
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.use(cors({ origin: '*', credentials: true }));
 app.use(express.json());
@@ -59,4 +67,11 @@ app.post('/api/ask', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => console.log('Backend running on port ' + PORT));
+// Frontend fallback
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
+
+app.listen(PORT, () => {
+    console.log('NEBULA running on port ' + PORT);
+});
