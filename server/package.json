@@ -1,7 +1,9 @@
 {
-    "name": "nebula-server",
+    "name": "nebula",
     "version": "2.0.0",
-    "type": "module",
+    "scripts": {
+        "start": "node server/server.js & python3 ai/model.py & npm run preview --prefix client -- --host 0.0.0.0 --port 3000"
+    },
     "dependencies": {
         "express": "^4.18.2",
         "cookie-parser": "^1.4.6",
