@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["nodejs", "python3"]
+
+[phases.install]
+cmds = [
+    "cd server && npm install",
+    "cd client && npm install && npm run build"
+]
+
+[phases.start]
+cmd = "node server/server.js & python3 ai/model.py & npm run preview --prefix client -- --host 0.0.0.0 --port 3000"
