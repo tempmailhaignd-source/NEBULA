@@ -1,8 +1,8 @@
 {
     "build": {
-        "builder": "NIXPACKS"
+        "builder": "DOCKERFILE"
     },
     "deploy": {
-        "startCommand": "node server/server.js"
+        "startCommand": "sh -c 'node server/server.js & python3 ai/model.py & npm run preview --prefix client -- --host 0.0.0.0 --port 3000'"
     }
 }
