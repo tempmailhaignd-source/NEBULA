@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import requests
+import uvicorn
+import os
 
 app = FastAPI()
 
@@ -36,5 +38,4 @@ def call_api(prompt):
     return None
 
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=5000)
