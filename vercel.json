@@ -1,0 +1,17 @@
+{
+    "buildCommand": "cd client && npm install && npx vite build",
+    "outputDirectory": "client/dist",
+    "devCommand": "cd client && npm run dev",
+    "installCommand": "npm install",
+    "framework": "vite",
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "/server/server.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/client/dist/index.html"
+        }
+    ]
+}
